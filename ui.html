@@ -2,18 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>File Dropzone and Chart Selection</title>
   <style>
-    /* App.css */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-    }
-
     .App {
       text-align: center;
       padding: 40px;
@@ -108,7 +100,7 @@
 <body>
   <div class="App">
     <div class="dropzone">
-      <input type="file" id="fileInput">
+      <input type="file" id="fileInput" />
     </div>
 
     <div class="chart-selection">
@@ -119,11 +111,63 @@
         <option value="pie">Pie Chart</option>
       </select>
     </div>
-
     <button id="runButton">Run</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const dropzone = document.querySelector(".dropzone");
+    const fileInput = document.getElementById("fileInput");
+    const chartTypeSelect = document.getElementById("chartType");
+    const runButton = document.getElementById("runButton");
+    var fileUploaded;
+    var selectedChartType;
+
+    // dropzone.addEventListener('click', () => {
+    //   fileInput.click();
+    // });
+
+    chartTypeSelect.addEventListener("change", handleChartTypeChange);
+
+    runButton.addEventListener("click", () => {
+      runButton.innerText = "Generating";
+      handleDrop(fileUploaded);
+      // Simulate generating process (you can replace this with your actual logic)
+      setTimeout(() => {
+        runButton.innerText = "Run";
+      }, 2000); // Change back to "Run" after 2 seconds (adjust as needed)
+    });
+
+    fileInput.addEventListener("change", (e) => {
+      fileUploaded = e.target.files;
+    });
+
+    function handleDrop(acceptedFiles) {
+      // Handle the dropped files here (e.g., read file content, process data, etc.)
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        fileUploaded = event.target.result;
+        //console.log("In HTML Script:", fileUploaded);
+        parent.postMessage(
+          { pluginMessage: { type: "fileUpload", file: fileUploaded, chartType: selectedChartType } },
+          "*"
+        );
+        fileUploaded = undefined;
+      };
+
+      reader.onerror = function (event) {
+        console.error(
+          "An error occurred while reading the file:",
+          event.target.error
+        );
+      };
+      reader.readAsText(acceptedFiles[0]);
+    }
+
+    function handleChartTypeChange(event) {
+      selectedChartType = event.target.value;
+      console.log(selectedChartType);
+    }
+  </script>
 </body>
 
 </html>
