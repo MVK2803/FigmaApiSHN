@@ -1,103 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>File Dropzone and Chart Selection</title>
   <style>
+    /* App.css */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
     .App {
-    padding: 40px;
-}
+      text-align: center;
+      padding: 40px;
+    }
 
-.dropzone {
-    border: 2px dashed #aaaaaa;
-    padding: 20px;
-    cursor: pointer;
-    max-width: 400px;
-    width: 100%;
-    background-color: #fff;
-    box-sizing: border-box;
-    text-align: center;
-    margin: 0 auto;
-    /* Center horizontally */
-}
+    .dropzone {
+      border: 2px dashed #aaaaaa;
+      padding: 20px;
+      cursor: pointer;
+      max-width: 400px;
+      width: 100%;
+      background-color: #f9f9f9;
+      box-sizing: border-box;
+      text-align: center;
+      margin: 0 auto;
+    }
 
-.dropzone p {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #777777;
-}
+    .dropzone p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #777777;
+    }
 
-.chart-selection {
-    margin-top: 20px;
-    text-align: center;
-}
+    .chart-selection {
+      margin-top: 20px;
+      text-align: center;
+    }
 
-.chart-selection label {
-    font-size: 18px;
-    margin-right: 10px;
-}
+    .chart-selection label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
 
-.chart-selection select {
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 2px solid #aaaaaa;
-    border-radius: 4px;
-    outline: none;
-    background-color: #fff;
-    color: #333333;
-    cursor: pointer;
-}
+    .chart-selection select {
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 2px solid #aaaaaa;
+      border-radius: 4px;
+      outline: none;
+      background-color: #f0f0f0;
+      color: #333333;
+      cursor: pointer;
+    }
 
-.chart-selection select::-ms-expand {
-    display: none;
-}
+    .chart-selection select::-ms-expand {
+      display: none;
+    }
 
-.chart-selection select {
-    appearance: none;
-}
+    .chart-selection select {
+      appearance: none;
+    }
 
-/* Custom styles for the dropzone border on hover */
-.dropzone:hover {
-    border-color: #555555;
-}
+    /* Custom styles for the dropzone border on hover */
+    .dropzone:hover {
+      border-color: #555555;
+    }
 
-/* Custom styles for the chart dropdown on hover */
-.chart-selection select:hover {
-    border-color: #555555;
-}
+    /* Custom styles for the chart dropdown on hover */
+    .chart-selection select:hover {
+      border-color: #555555;
+    }
 
-/* Add some transition effects for a smoother user experience */
-.dropzone,
-.chart-selection select {
-    transition: border-color 0.3s ease-in-out;
-}
+    /* Add some transition effects for a smoother user experience */
+    .dropzone,
+    .chart-selection select {
+      transition: border-color 0.3s ease-in-out;
+    }
 
-/* Styling for the whole body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
+    /* Run button styles */
+    #runButton {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #runButton:hover {
+      background-color: #0056b3;
+    }
+
+    #runButton.generating {
+      background-color: #ffc107;
+    }
   </style>
 </head>
+
 <body>
   <div class="App">
-    <div class="dropzone" id="dropzone">
+    <div class="dropzone">
       <input type="file" id="fileInput">
     </div>
 
     <div class="chart-selection">
-      <label>Select Chart Type:</label>
-      <select id="chartTypeSelect">
+      <label for="chartType">Select Chart Type:</label>
+      <select id="chartType">
         <option value="line">Line Chart</option>
         <option value="bar">Bar Chart</option>
         <option value="pie">Pie Chart</option>
       </select>
     </div>
+
+    <button id="runButton">Run</button>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
