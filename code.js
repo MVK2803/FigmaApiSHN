@@ -19,21 +19,30 @@ figma.ui.onmessage = async msg => {
 
   if (msg.type === 'fileUpload') {
     const sample_arr = students;
-    const colors=[{ r: 1, g: 0, b: 0 },{ r: 0, g: 1, b: 0 },{ r: 0, g: 0, b: 1 }]
+    const colors = [{ r: 1, g: 0, b: 0 }, { r: 0, g: 1, b: 0 }, { r: 0, g: 0, b: 1 }];
     const nodes = [];
-    const rectWidth = 100;
+    const rectWidth = 50;
     const spacing = 20;
     const graphBottomY = figma.viewport.center.y;
 
     await figma.loadFontAsync({ family: "Inter", style: "Regular" });
 
+    // Plot Y-axis
+    const yAxis = figma.createRectangle();
+    yAxis.x = spacing - 5; // Adjust the position for better alignment
+    yAxis.y = graphBottomY - 200; // Adjust the height of the Y-axis
+    yAxis.resize(5, 200);
+    yAxis.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 } }];
+    figma.currentPage.appendChild(yAxis);
+    nodes.push(yAxis);
+
     for (let i = 0; i < sample_arr.length; i++) {
       const rect = figma.createRectangle();
-      rect.x = i * (rectWidth + spacing);
-      const barHeight = sample_arr[i].data2;
+      rect.x = i * (rectWidth + spacing) + spacing;
+      const barHeight = sample_arr[i].data2 * 2;
       rect.y = graphBottomY - barHeight;
       rect.resize(rectWidth, barHeight);
-      rect.fills = [{ type: 'SOLID', color: colors[i%3] }];
+      rect.fills = [{ type: 'SOLID', color: colors[i % 3] }];
       figma.currentPage.appendChild(rect);
       nodes.push(rect);
 
@@ -43,6 +52,15 @@ figma.ui.onmessage = async msg => {
       label.y = graphBottomY + 10;
       figma.currentPage.appendChild(label);
     }
+
+    // Plot X-axis
+    const xAxis = figma.createRectangle();
+    xAxis.x = spacing - 5; // Adjust the position for better alignment
+    xAxis.y = graphBottomY;
+    xAxis.resize(sample_arr.length * (rectWidth + spacing) + spacing, 5);
+    xAxis.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 } }];
+    figma.currentPage.appendChild(xAxis);
+    nodes.push(xAxis);
 
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
