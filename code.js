@@ -1,5 +1,6 @@
 // Import the 'figma' library and show the UI
 figma.showUI(__html__);
+figma.ui.resize(400, 300);
 
 // Define the 'onmessage' event handler for receiving messages from the UI
 figma.ui.onmessage = async msg => {
