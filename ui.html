@@ -6,18 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>File Dropzone and Chart Selection</title>
   <style>
+    *{
+      font: 16px Arial, sans-serif;
+    }
     .App {
       text-align: center;
       padding: 40px;
     }
 
+    body{
+      background-color: #fff;
+    }
+
     .dropzone {
-      border: 2px dashed #aaaaaa;
+      border: 2px dashed #a39f9f;
       padding: 20px;
       cursor: pointer;
       max-width: 400px;
       width: 100%;
-      background-color: #f9f9f9;
+      background-color: #eee2e2;
       box-sizing: border-box;
       text-align: center;
       margin: 0 auto;
@@ -42,20 +49,12 @@
     .chart-selection select {
       padding: 8px 12px;
       font-size: 16px;
-      border: 2px solid #aaaaaa;
+      border: 2px solid #a39f9f;
       border-radius: 4px;
       outline: none;
-      background-color: #f0f0f0;
-      color: #333333;
+      background-color: #eee2e2;
+      color: #211f1f;
       cursor: pointer;
-    }
-
-    .chart-selection select::-ms-expand {
-      display: none;
-    }
-
-    .chart-selection select {
-      appearance: none;
     }
 
     /* Custom styles for the dropzone border on hover */
@@ -79,7 +78,7 @@
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 16px;
-      background-color: #007bff;
+      background-color: #ff6a00;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -88,11 +87,7 @@
     }
 
     #runButton:hover {
-      background-color: #0056b3;
-    }
-
-    #runButton.generating {
-      background-color: #ffc107;
+      background-color: #b31200;
     }
   </style>
 </head>
