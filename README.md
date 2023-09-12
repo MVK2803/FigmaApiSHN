@@ -6,7 +6,7 @@ A figma plugin to convert spreadsheet data into graphs and charts.
 ## Team members
 1. [Mathew V Kariath](https://github.com/MVK2803)
 2. [Rajath Thomas Kurian](https://github.com/rajath-tk)
-3. [Abhishek S](https://github.com/ABCET)
+3. [Abhishek S](https://github.com/abhi-s-03)
 ## Link to product walkthrough
 ([Link Here](https://drive.google.com/file/d/17WZ1OokSwRW9P3bSKqHhiL0pQkvTnqB6/view?usp=sharing))
 ## How it Works ?
